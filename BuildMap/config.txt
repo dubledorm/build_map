@@ -1,0 +1,7 @@
+Curves - "firstX","firstY","FirstShop","weight","secondX","secondY","SecondShop" \n
+
+Point - "id","x","y"
+
+targetsCSV - Point("id", "x", "y"), "nameShop", "discription" \n
+
+roads - "id начальной точки", "id конечной точки", "вес дуги"
