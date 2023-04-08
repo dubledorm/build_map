@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <meta charset='utf8'>
+   <title>BuildMap</title>
     <style>
 	.container {
 width: 80%;
@@ -55,17 +57,12 @@ option {
 <body>
 <div class="Plank">
 <select name="Selectus" id="Selectus" class="Selectus">
-  <option>Выберите точку</option>
-  <option value="https://www.w3schools.com/html/">Пункт 2</option>
-  <option>Пункт 3</option>
-  <option>Пункт 4</option>
-  <option>Пункт 5</option>
-  <option>Пункт 6</option>
-  <option>Пункт 7</option>
+  #[targetListKey]
 </select>
 </div>
 <div class="container">
-  <img src="buildingMapSvg.svg">
+  #[svgKey]
+</div>  
 <script>
     document.getElementById("Selectus").onchange = function() {
             window.location.href = this.value;      

@@ -9,12 +9,12 @@ namespace BuildMap
 {
     public class Building
     {
-        const string directName = "example\\Buildings\\";
+        const string directName = @"C:\Users\User\example\Buildings\";
         const string baseHtmlName = "base.html";
         const string svgName = "buildingMapSvg.svg";
         const string targetName = "targetsCSV.csv";
         const string roadsName = "roads.csv";
-        Svg svg;// исходная картинка помещения
+        public Svg svg;// исходная картинка помещения
         public List<Target> targets;
         public List<Road> roads;
         public int id;
@@ -80,7 +80,7 @@ namespace BuildMap
         }
         public string svgFilePath()
         {
-            return Path.Combine(directName, Convert.ToString(id), svgName);
+            return Path.Join(directName, Convert.ToString(id), svgName);
         }
         private string targetsFilePath()
         {

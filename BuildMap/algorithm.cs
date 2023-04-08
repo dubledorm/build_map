@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BuildMap
 {
     public class algorithm
     {
-        public static pathnweight goThroughGraph(int id1, int id2, Road[] roads)
+/*        public static pathnweight goThroughGraph(int id1, int id2, Road[] roads)
         {
             //
             return new pathnweight();
@@ -29,7 +24,7 @@ namespace BuildMap
                 }
             }
             return result;
-        }
+        }*/
 
         public static string addPathInSvg(string svg_file_path, PathPresenter path_presenter) // Функция
         {
