@@ -9,7 +9,7 @@ namespace BuildMap
 {
     public class Building
     {
-        const string directName = @"C:\Users\User\example\Buildings\";
+        const string directName = @"C:\Buildings\";
         const string baseHtmlName = "base.html";
         const string svgName = "buildingMapSvg.svg";
         const string targetName = "targetsCSV.csv";
