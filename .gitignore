@@ -7,3 +7,5 @@
 /.vs
 /BuildMap/bin/Debug/net6.0
 /BuildMap/obj
+/BuildMap/bin
+/published
