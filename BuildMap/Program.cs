@@ -7,6 +7,7 @@ HttpListener server = new HttpListener();
 server.Prefixes.Add($"http://127.0.0.1:8888/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
 while (true)
 {
+    Console.WriteLine("Waiting for request.");
     server.Start(); // начинаем прослушивать входящие подключения
 
     // получаем контекст
