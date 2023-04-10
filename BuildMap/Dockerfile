@@ -15,6 +15,7 @@ FROM build AS publish
 RUN dotnet publish "BuildMap.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+EXPOSE 8888
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BuildMap.dll"]
