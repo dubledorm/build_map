@@ -10,11 +10,12 @@ while (true)
     Console.WriteLine("Waiting for request.");
     server.Start(); // начинаем прослушивать входящие подключения
 
-    Console.WriteLine("Got request.");
+    Console.WriteLine("Listen.");
 
     // получаем контекст
     var context = await server.GetContextAsync();
     RequestHandler request_handler = new RequestHandler(context.Request);
+    Console.WriteLine("Got request.");
 
     var response = context.Response;
     // отправляемый в ответ код htmlвозвращает
