@@ -24,17 +24,17 @@ jobs:
         uses: dinushchathurya/build-tag-push-action@v1.2.1
         with:
           # Username to connect to Docker registry
-          username: ${{ secret.DOCKER_HUB_NAME }}
+          username: ${{ secrets.DOCKER_HUB_NAME }}
           # Password to connect to Docker registry
-          password:  ${{ secret.DOCKER_HUB_PASSWORD }}
+          password:  ${{ secrets.DOCKER_HUB_PASSWORD }}
           # Docker build context
           context: default
           # Docker build file
           file: ./BuildMap/Dockerfile
           # Docker repository owner
-          repoOwner: ${{ secret.DOCKER_HUB_NAME }}
+          repoOwner: ${{ secrets.DOCKER_HUB_NAME }}
           # Docker repository
-          repository: ${{ secret.BUILD_MAP_REPOSITORY_NAME }}
+          repository: ${{ secrets.BUILD_MAP_REPOSITORY_NAME }}
           # Docker image tag
           tag: latest
 
