@@ -16,3 +16,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file ./BuildMap/Dockerfile --tag build_mao:$(date +%s)
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: deploy
+        # ...deployment-specific steps
