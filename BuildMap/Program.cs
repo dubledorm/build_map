@@ -4,7 +4,7 @@ using BuildMap;
 
 HttpListener server = new HttpListener();
 // установка адресов прослушки
-server.Prefixes.Add($"http://127.0.0.1:80/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
+server.Prefixes.Add($"http://127.17.0.2:80/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
 while (true)
 {
     Console.WriteLine("Waiting for request.");
