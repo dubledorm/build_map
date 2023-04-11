@@ -2,6 +2,12 @@
 using System.Text;
 using BuildMap;
 
+if (!HttpListener.IsSupported)
+{
+    Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
+    return -1;
+}
+
 HttpListener server = new HttpListener();
 // установка адресов прослушки
 server.Prefixes.Add($"http://127.17.0.2:80/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
