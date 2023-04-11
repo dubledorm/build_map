@@ -10,7 +10,7 @@ if (!HttpListener.IsSupported)
 
 HttpListener server = new HttpListener();
 // установка адресов прослушки
-server.Prefixes.Add($"http://127.0.0.1:8080/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
+server.Prefixes.Add($"http://*:8080/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
 while (true)
 {
     Console.WriteLine("Waiting for request.");
