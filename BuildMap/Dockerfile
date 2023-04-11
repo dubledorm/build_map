@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -15,7 +16,6 @@ FROM build AS publish
 RUN dotnet publish "BuildMap.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-EXPOSE 80
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BuildMap.dll"]
