@@ -4,13 +4,13 @@ using BuildMap;
 
 if (!HttpListener.IsSupported)
 {
-    Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
+    Console.WriteLine("HttpListener class dose not support this OS.");
     return -1;
 }
 
 HttpListener server = new HttpListener();
 // установка адресов прослушки
-server.Prefixes.Add($"http://*:8080/{RequestHandler.base_url}/");//http://127.0.0.1:8888/mapping/
+server.Prefixes.Add($"http://*:8080/{RequestHandler.base_url}/");
 while (true)
 {
     Console.WriteLine("Waiting for request.");
@@ -35,7 +35,7 @@ while (true)
     await output.WriteAsync(buffer);
     await output.FlushAsync();
 
-    Console.WriteLine("Запрос обработан");
+    Console.WriteLine("Request processed");
 }
 server.Stop();
 //using System;

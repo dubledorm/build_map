@@ -10,10 +10,15 @@ namespace BuildMap
     {
         private Building building;
         private int start_point_id;
-        public TargetListPresenter(Building building, int start_point_id)
+        private string host;
+        private int port;
+
+        public TargetListPresenter(Building building, int start_point_id, string host, int port)
         {
             this.building = building;
             this.start_point_id = start_point_id;
+            this.host = host;
+            this.port = port;
         }
         public string toTargetList()
         {
@@ -28,8 +33,9 @@ namespace BuildMap
         }
 
         private string link(Target target)
-        {
-            return $"http://127.0.0.1:8888/mapping/buildings/{building.id}/points/{start_point_id}/path?target_id={target.id}";
+        { string port_string = port == 0 ? "" : $":{port}";
+
+            return $"http://{host}{port_string}/mapping/buildings/{building.id}/points/{start_point_id}/path?target_id={target.id}";
         }
     }
 }

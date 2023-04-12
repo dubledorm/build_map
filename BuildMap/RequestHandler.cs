@@ -24,11 +24,15 @@ namespace BuildMap
         private int start_point_id;
         private int end_point_id;
         private Building building;
+        private string host;
+        private int port;
 
         public RequestHandler(HttpListenerRequest request)
         {
             requestParse(request);
             building = new Building(building_id);
+            host = request.Url!.Host;
+            port = request.Url.Port;
         }
         
         private string build_html_with_point()
@@ -37,7 +41,7 @@ namespace BuildMap
 
             string html = File.ReadAllText(building.baseHtmlPath());
             html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id).toTargetList());
+            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host, port).toTargetList());
             return html;
         }
         private string build_html_with_path()
@@ -66,7 +70,7 @@ namespace BuildMap
         {
             string html = File.ReadAllText(building.baseHtmlPath());
             html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id).toTargetList());
+            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host, port).toTargetList());
             return html;
         }
 
