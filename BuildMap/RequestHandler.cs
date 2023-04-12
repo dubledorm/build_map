@@ -12,6 +12,7 @@ namespace BuildMap
     public class RequestHandler
     {
         public const string base_url = "mapping";
+        public const string prefix_url = "http://*:8080";
         public const string point_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)$";
         public const string path_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)\/path\?target_id=(?<target_id>\d+)$";
         public enum request_type_value
@@ -24,15 +25,14 @@ namespace BuildMap
         private int start_point_id;
         private int end_point_id;
         private Building building;
-        private string host;
-        private int port;
+        private string host_name_with_port;
+
 
         public RequestHandler(HttpListenerRequest request)
         {
             requestParse(request);
             building = new Building(building_id);
-            host = request.Url!.Host;
-            port = request.Url.Port;
+            host_name_with_port = request.UserHostName;
         }
         
         private string build_html_with_point()
@@ -41,7 +41,7 @@ namespace BuildMap
 
             string html = File.ReadAllText(building.baseHtmlPath());
             html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host, port).toTargetList());
+            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host_name_with_port).toTargetList());
             return html;
         }
         private string build_html_with_path()
@@ -70,7 +70,7 @@ namespace BuildMap
         {
             string html = File.ReadAllText(building.baseHtmlPath());
             html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host, port).toTargetList());
+            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host_name_with_port).toTargetList());
             return html;
         }
 
