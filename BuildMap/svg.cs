@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Text.RegularExpressions;
+
 
 namespace BuildMap
 {
@@ -17,6 +15,7 @@ namespace BuildMap
         {
             string svg = File.ReadAllText(svg_file_path);
             svg = svg.Replace("#[key]", value_for_replace);
+            svg = Regex.Replace(svg, @"svg\s*width=""\d+""\s*height=""\d+""", @"svg width=""100%"" height=""auto""");
             return svg;
         }
     }
