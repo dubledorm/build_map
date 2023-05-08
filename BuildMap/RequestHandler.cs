@@ -10,7 +10,7 @@ namespace BuildMap
     public class RequestHandler
     {
         public const string base_url = "mapping";
-        public const string prefix_url = "http://*:8080";
+        public const string prefix_url = "http://127.0.0.1:8080";
         public const string assets_url = "http://82.146.48.183/build_map";
         public const string point_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)$";
         public const string path_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)\/path\?target_id=(?<target_id>\d+)$";
