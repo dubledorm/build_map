@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿
 
 namespace BuildMap
 {
     public class Building
     {
-        const string directName = @"C:\Buildings\";
+        const string directName = @"/app/data"; // @"c:\Users\User\example\buildings\"; || /app/data
         const string baseHtmlName = "base.html";
         const string svgName = "buildingMapSvg.svg";
         const string targetName = "targetsCSV.csv";

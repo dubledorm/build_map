@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.AccessControl;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace BuildMap
 {
     public class RequestHandler
     {
         public const string base_url = "mapping";
+        public const string prefix_url = "http://*:8080";
+        public const string assets_url = "http://82.146.48.183/build_map";
         public const string point_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)$";
         public const string path_url_regexp = @"^\/mapping\/buildings\/(?<build_id>\d+)\/points\/(?<point_id>\d+)\/path\?target_id=(?<target_id>\d+)$";
         public enum request_type_value
@@ -24,27 +24,26 @@ namespace BuildMap
         private int start_point_id;
         private int end_point_id;
         private Building building;
+        private string host_name_with_port;
+
 
         public RequestHandler(HttpListenerRequest request)
         {
             requestParse(request);
             building = new Building(building_id);
+            host_name_with_port = request.UserHostName;
         }
         
         private string build_html_with_point()
         {
             string svg = building.svg.ReplaceKeyWithString(new PointPresenter(building, start_point_id).toPoint());
-
-            string html = File.ReadAllText(building.baseHtmlPath());
-            html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id).toTargetList());
-            return html;
+            return build_html(svg);
         }
         private string build_html_with_path()
         {
             PathFinder path_finder = new PathFinder(building.roads);
             PathPresenter path_presenter = new PathPresenter(building, path_finder.find(start_point_id, end_point_id), start_point_id);
-            string svg = algorithm.addPathInSvg(building.svgFilePath(), path_presenter);
+            string svg = building.svg.ReplaceKeyWithString(path_presenter.toPolyline());
 
             return build_html(svg);
         }
@@ -65,8 +64,9 @@ namespace BuildMap
         private string build_html(string svg)
         {
             string html = File.ReadAllText(building.baseHtmlPath());
+            html = html.Replace("#[base_url]", assets_url);
             html = html.Replace("#[svgKey]", svg);
-            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id).toTargetList());
+            html = html.Replace("#[targetListKey]", new TargetListPresenter(building, start_point_id, host_name_with_port).toTargetList());
             return html;
         }
 
@@ -74,7 +74,7 @@ namespace BuildMap
         private void requestParse(HttpListenerRequest request)
         {
             if (request.RawUrl == null)
-                throw new Exception($"Неправильно передан Url ");
+                throw new Exception($"Передан пустой Url ");
 
             Match match = Regex.Match(request.RawUrl, path_url_regexp, RegexOptions.IgnoreCase);
 
@@ -96,7 +96,7 @@ namespace BuildMap
                 return;
             }
 
-            throw new Exception($"Неправильно передан Url ");
+            throw new Exception($"Неправильно передан Url {request.RawUrl}");
         }
 
         //http://127.0.0.1:8888/mapping/buildings/1/points/2/path?target=2
