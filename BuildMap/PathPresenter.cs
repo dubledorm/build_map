@@ -24,7 +24,7 @@ namespace BuildMap
                 result += target.x + "," + target.y + " ";
                 current_point_id = selectRemainingPoint(road, current_point_id);
             }
-            result += building.targetByPointId(current_point_id).x + "," + building.targetByPointId(current_point_id).y + "\" stroke=\"red\" stroke-width=\"20\" stroke-linecap=\"round\" fill=\"none\" stroke-linejoin=\"round\"/>";
+            result += building.targetByPointId(current_point_id).x + "," + building.targetByPointId(current_point_id).y + "\" stroke=\"red\" stroke-width=\"10\" stroke-linecap=\"round\" fill=\"none\" stroke-linejoin=\"round\"/>";
             return result;
         }//34 122 31 153 11 31 65
 

@@ -13,7 +13,9 @@ HttpListener server = new HttpListener();
 server.Prefixes.Add($"{RequestHandler.prefix_url}/{RequestHandler.base_url}/");
 while (true)
 {
+
     Console.WriteLine("Waiting for request.");
+
     server.Start(); // начинаем прослушивать входящие подключения
 
     Console.WriteLine("Listen.");
