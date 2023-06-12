@@ -37,18 +37,18 @@ namespace BuildMap
 								<div class=""entry-meta"">
 									<span id=""publish_date"">{target.name}</span>
 									<span><i class=""fa fa-user""></i> <a href=""#"">{target.id}</a></span>
-									<span><i class=""fa fa-comment""></i> <a href=""#"">Лекции по искуственному интеллекту</a></span>
+									<span><i class=""fa fa-comment""></i> <a href=""#""></a></span>
 								</div>
 							</div>
 							<div class=""col-xs-12 col-sm-10 blog-content"">
 							  <a href=""#""><img class=""img-responsive img-blog"" src=""{RequestHandler.assets_url}/images/blog/blog{target.id + 1}.jpg"" width=""100%"" alt="""" /></a>
-							  <h2><a href=""blog-item.html"">Информаториум</a></h2>
+							  <h2><a href=""{link(target)}"">{target.name}</a></h2>
 							  <h3>{target.description}</h3>
-							  <a class=""btn btn-primary readmore"" href=""{link(target)}"">Сюда <i class=""fa fa-angle-right""></i></a>
+							  <a class=""btn btn-primary readmore"" href=""{link(target)}"">Сюда</a>
 							</div>
 						</div>";
 
-            return result ;
+            return result;
         }
     }
 }
